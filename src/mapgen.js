@@ -1,5 +1,6 @@
 import { Map as rotMap} from 'rot-js';
 import { MapOptions } from './const'
+import Map from './map';
 import Tile from './tile';
 
 /**

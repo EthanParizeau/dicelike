@@ -2,14 +2,11 @@ var path = require('path');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
-var root_dir = path.resolve(__dirname);
 
-var paths = {
-    static: path.join(root_dir, 'static'),
-    source: path.join(root_dir, 'src'),
-    content: path.join(root_dir, 'dist'),
-    // NOTE:
-    // maybe if we define the path to the rot.js lib here, and use the "expose-loader" for it as well?
+const paths = {
+    static: path.join(__dirname, 'static'),
+    source: path.join(__dirname, 'src'),
+    content: path.join(__dirname, 'dist'),
 };
 
 module.exports = {
@@ -18,13 +15,6 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.js',
-    },
-    mode: 'development',
-    devtool: 'eval-source-map',
-
-    devServer: {
-        contentBase: paths.content,
-        publicPath: '/',
     },
 
     module: {
