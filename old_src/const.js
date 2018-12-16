@@ -1,15 +1,3 @@
-const DisplayOptions = {
-    fontSize: 15,
-    width: (screen.availWidth / 15) / 2,
-    height: (screen.availHeight / 15) / 2,
-    forceSquareRatio: true
-}
-
-const MapOptions = {
-    width: 160,
-    height: 50
-}
-
 const Tiles = {
     "null": {
 
@@ -30,4 +18,4 @@ const Tiles = {
     }
 }
 
-export { DisplayOptions, MapOptions, Tiles };
+export {Tiles};

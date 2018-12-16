@@ -9,14 +9,24 @@ body {
 
 .screen {
     order: 2;
+
+    border-style: solid;
+    border-width: 1px;
+    border-color: orange;
+}
+
+.leftDiv, .rightDiv {
+    border-style: solid;
+    border-width: 1px;
+    border-color: blue;
+    width: 25%;
 }
 
 .leftDiv {
-    width: 25%;
     order: 1;
+    
 }
 
 .rightDiv {
-    width: 25%;
     order: 3;
 }

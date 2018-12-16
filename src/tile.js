@@ -8,7 +8,6 @@ class Tile {
         this.foreground = properties.foreground;
         this.background  = properties.background;
         this.properties = properties.properties;
-        console.log(this);
     }
 }
 
