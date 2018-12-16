@@ -17,7 +17,7 @@ module.exports = {
 
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: '[name].js',
+        filename: 'bundle.js',
     },
     mode: 'development',
     devtool: 'eval-source-map',
@@ -25,6 +25,18 @@ module.exports = {
     devServer: {
         contentBase: paths.content,
         publicPath: '/',
+    },
+
+    module: {
+        rules: [
+            {
+                test: /\.css$/,
+                use: [
+                    'style-loader',
+                    'css-loader'
+                ]
+            }
+        ]
     },
 
     plugins: [
