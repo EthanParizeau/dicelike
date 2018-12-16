@@ -1,0 +1,22 @@
+body {
+    background-color:#000000;
+}
+
+.app {
+    display: flex;
+    flex-direction: row;
+}
+
+.screen {
+    order: 2;
+}
+
+.leftDiv {
+    width: 25%;
+    order: 1;
+}
+
+.rightDiv {
+    width: 25%;
+    order: 3;
+}
