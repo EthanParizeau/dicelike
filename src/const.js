@@ -1,14 +1,14 @@
 const DisplayOptions = {
     fontSize: 15,
-    width: 64,
-    height: 32,
+    width: 50,
+    height: 25,
     forceSquareRatio: true,
     tileColorize: true,
 }
 
 const MapOptions = {
-    width: 64,
-    height: 32
+    width: 50,
+    height: 25,
 }
 
 const Tiles = {

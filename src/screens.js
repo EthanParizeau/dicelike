@@ -22,8 +22,8 @@ Screen.startScreen = {
     },
 
     render: (display) => {
-        display.drawText(1,1, "%c{yellow}Javascript Roguelike");
-        display.drawText(1,2, "Press [Enter] to start!");
+        display.drawText(1, 1, "Mofucken videogame");
+        display.drawText(1, 2, "Press [Enter] to start!");
     },
 
     handleInput: (inputType, inputData) => {
@@ -38,50 +38,73 @@ Screen.startScreen = {
 Screen.playScreen = {
     world: null,
     player: null,
-    enter: () => {
+    enter: function() {
         DebugLog.info("Entered play screen.");
-        
+
         // Setup keys
-        let player = new Entity(PlayerTemplate);
-        this.world = new World(player);
+        this.keys = {};
+        this.keys[KEYS.VK_UP] = 0;
+        this.keys[KEYS.VK_RIGHT] = 1;
+        this.keys[KEYS.VK_DOWN] = 2;
+        this.keys[KEYS.VK_LEFT] = 3;
+        this.keys[KEYS.VK_PERIOD] = -1; // Skip turn
+
+        this.move = (distance) => {
+            const newXY = this.player.xy.plus(distance);
+            // Try to move
+            this.player.tryMove(newXY, this.world.currentLevel);
+        }
+
+        this.player = new Entity(PlayerTemplate);
+        this.world = new World(this.player);
         this.world.switchLevel(0);
         this.world.engine.start();
     },
 
-    exit: () => {
+    exit: function() {
         DebugLog.info("Exited play screen.");
     },
 
-    render: (display) => {
+    render: function(display) {
         const screenWidth = DisplayOptions.width;
         const screenHeight = DisplayOptions.height;
         const currentLevel = this.world.currentLevel;
-        // Make sure the x axis to the left of the left bound
-        let topLeftX = Math.max(0, this.player.xy.x - (screenWidth / 2));
-        // Make sure we still have enough space to fit the screen
-        topLeftX = Math.floor(Math.min(topLeftX, currentLevel.width - screenWidth));
-        // Make sure the y axis doesn't above top bound
-        let topLeftY = Math.max(0, this.player.xy.y - (screenHeight / 2));
-        // Make sure we still have enough space to fit the screen
-        topLeftY = Math.floor(Math.min(topLeftY, currentLevel.height - screenHeight));
 
-        // Iterate through all visible map cells
-        for(let x = topLeftX; x < topLeftX + screenWidth; x++) {
-            for(let y = topLeftY; y < topLeftY + screenHeight; y++) {
-                const tile = currentLevel.getTile(new XY(x, y));
-                display.draw(
-                    x - topLeftX, 
-                    y - topLeftY - 1, 
-                    tile.symbol, 
-                    tile.foreground, 
-                    tile.background);
+        // Draw tiles
+        for(let x = 0; x < screenWidth; x++) {
+            for(let y = 0; y < screenHeight; y++) {
+                let tile = currentLevel.getTile(new XY(x, y));
+                display.draw(x, y, tile.symbol, tile.foreground, tile.background);
             }
+        }
+
+        // Draw entities
+        const entities = currentLevel.entities;
+        for(let i = 0; i < entities.length; i++) {
+            const entity = entities[i];
+            const tile = currentLevel.getTile(entity.xy);
+            display.draw(entity.xy.x, entity.xy.y, entity.symbol, entity.foreground, tile.background);
         }
         
     },
 
-    handleInput: (inputType, inputData) => {
+    handleInput: function(inputType, inputData)  {
+        if(inputType === 'keydown') {
+            if(inputData.keyCode in this.keys) {
+                const direction = this.keys[inputData.keyCode];
+                if(direction === -1) { // Skip turn
+                    // Unlock engine
+                    this.world.engine.unlock();
+                    return true;
+                }
 
+                const dir = DIRS[4][direction];
+                this.move(new XY(dir[0], dir[1]));
+
+                // Unlock engine
+                this.world.engine.unlock();
+            }
+        }
     }
 }
 

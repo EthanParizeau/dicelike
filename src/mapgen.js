@@ -14,7 +14,7 @@ import { EnemyTemplate } from './entities';
 function GenerateMap(player, id) {
     let map = [];
     // Generate empty 64 x 32 array
-    map = Array(64).fill(0).map(() => Array(32).fill(0));
+    map = Array(MapOptions.width).fill(0).map(() => Array(MapOptions.height).fill(0));
 
     // Setup the generator
     const generator = new rotMap.Digger(MapOptions.width, MapOptions.height, { dugPercentage: 0.3 });

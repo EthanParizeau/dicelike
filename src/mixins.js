@@ -84,8 +84,6 @@ Mixins.EnemyActor = {
     name: 'EnemyActor',
     groupName: 'Actor',
     act: function() {
-        console.log(this.name + " IS ACTING")
-        
         if(!this.world.levels[this.levelID].entities[0]) {
             return;
         }          
