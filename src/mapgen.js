@@ -32,6 +32,7 @@ function GenerateMap(player, id) {
     });
     // Create map from tiles
     map = new Map(map, player);
+    map.id = id;
     return map;
 }
 
