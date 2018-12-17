@@ -32,7 +32,7 @@ function GenerateMap(player, id) {
     // Add the player
     map.addEntityAtRandomPosition(player);
     // Add ememy
-    //map.addEntityAtRandomPosition(new Entity(EnemyTemplate));
+    map.addEntityAtRandomPosition(new Entity(EnemyTemplate));
     return map;
 }
 

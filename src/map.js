@@ -35,6 +35,16 @@ class Map {
         }
     }
 
+    removeEntity(entity) {
+        for(let i = 0; i < this.entities.length; i++) {
+            if(this.entities[i] === entity) {
+                this.entities.splice(i, 1);
+                entity.levelID = null;
+                break;
+            }
+        }
+    }
+
     getRandomFloorTile() {
         let x, y;
         do {

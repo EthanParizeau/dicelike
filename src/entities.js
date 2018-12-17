@@ -5,8 +5,12 @@ export const PlayerTemplate = {
     symbol: "@",
     foreground: '#39FF14',
     maxHp: 40,
+    attackValue: 10,
     mixins: [
-        Mixins.PlayerActor, Mixins.Moveable
+        Mixins.PlayerActor, 
+        Mixins.Moveable, 
+        Mixins.Attacker,
+        Mixins.Destructible
     ]
 }
 
@@ -15,4 +19,11 @@ export const EnemyTemplate = {
     symbol: '☹',
     foreground: 'red',
     maxHp: 20,
+    attackValue: 5,
+    mixins: [
+        Mixins.Moveable,
+        Mixins.Attacker,
+        Mixins.Destructible,
+        Mixins.EnemyActor
+    ]
 }
