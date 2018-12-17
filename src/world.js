@@ -11,8 +11,6 @@ class World {
         // Generate levels
         this.levels[0] = GenerateMap(player, 1);
         this.levels[0].world = this;
-        this.levels[1] = GenerateMap(player, 2);
-        this.levels[1].world = this;
 
         // Create the engine and scheduler
         this.scheduler = new Scheduler.Simple();

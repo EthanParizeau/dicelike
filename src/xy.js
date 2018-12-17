@@ -4,6 +4,14 @@ class XY {
         this.y = y;
     }
 
+    is(xy) {
+        return (this.x === xy.x && this.y === xy.y);
+    }
+
+    plus(xy) {
+        return new XY(this.x + xy.x, this.y + xy.y);
+    }
+
     toString() {
         return this.x + "," + this.y;
     }

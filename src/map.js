@@ -1,6 +1,7 @@
 import { DebugLog } from './util';
 import Tile from './tile';
 import XY from './xy';
+import { RNG } from 'rot-js';
 
 class Map {
     constructor(tiles, player) {
@@ -14,16 +15,47 @@ class Map {
         this.entities = [];
     }
 
-    getTile(xy) {
-        // Make sure we are inside the bounds. If we aren't, return
-        // null tile.
-        if(!this.isInBounds(xy)) {
-            return new Tile("null");
-        } else {
-            return this.tiles[xy.x][xy.y] || new Tile("null");
+    addEntityAtRandomPosition(entity) {
+        entity.xy = this.getRandomFloorTile();
+        this.addEntity(entity);
+    }
+
+    addEntity(entity) {
+        // Update the entity's levelID
+        entity.levelID = this.id;
+        // Add entity to list
+        this.entities.push(entity);
+    }
+
+    getEntityAt(xy) {
+        for(let i = 0; i < this.entities.length; i++) {
+            if(this.entities[i].xy.is(xy)) {
+                return this.entities[i];
+            }
         }
     }
 
+    getRandomFloorTile() {
+        let x, y;
+        do {
+            x = Math.floor(RNG.getUniform() * this.width);
+            y = Math.floor(RNG.getUniform() * this.height);
+        } while(!this.isEmptyFloor(new XY(x, y)));
+        return new XY(x, y);
+    }
+
+    getTile(xy) {
+        // Make sure we are inside the bounds. If we aren't, return
+        // null tile.
+        return this.tiles[xy.x][xy.y];
+    }
+
+    isEmptyFloor(xy) {
+        // Check if tile is floor and is empty
+        return this.getTile(xy).type === "floor" && !this.getEntityAt(xy);
+    }
+
+    // OLD
     isInBounds(xy) {
         return (xy.x > 0 && xy.x < this.width && xy.y > 0 && xy.y < this.height);
     }

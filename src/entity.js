@@ -2,6 +2,8 @@ class Entity {
     constructor(props = {}) {
         this.name = props['name'] || '';
         this.xy = props['xy'] || 0;
+        this.symbol = props['symbol'];
+        this.foreground = props['foreground'];
         this.levelID = null;
         this.world = null;
 

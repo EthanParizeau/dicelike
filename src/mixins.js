@@ -1,6 +1,21 @@
 import game from "./game";
-
+import XY from './xy';
 const Mixins = {};
+
+Mixins.Moveable = {
+    name: 'Moveable',
+    tryMove: function(xy, map) {
+        const tile = map.getTile(xy);
+        // Check if tile is walkable
+        if(tile.properties.isWalkable) {
+            // Update position
+            this.xy = xy;
+            return true;
+        }
+        return false;
+        
+    }
+}
 
 Mixins.PlayerActor = {
     name: 'PlayerActor',
