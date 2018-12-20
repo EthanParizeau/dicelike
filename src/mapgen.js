@@ -13,7 +13,7 @@ import { EnemyTemplate } from './entities';
  */
 function GenerateMap(player, id) {
     let map = [];
-    // Generate empty 64 x 32 array
+    // Generate empty mapWidth x mapHeight array
     map = Array(MapOptions.width).fill(0).map(() => Array(MapOptions.height).fill(0));
 
     // Setup the generator

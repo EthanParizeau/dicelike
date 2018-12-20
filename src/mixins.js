@@ -1,6 +1,8 @@
 import game from "./game";
 import { Path } from 'rot-js';
 import XY from './xy';
+import ui from './ui';
+
 const Mixins = {};
 
 Mixins.Moveable = {
@@ -41,7 +43,7 @@ Mixins.Destructible = {
         this.hp -= damage;
         // If 0 or less hp, remove from the map
         if(this.hp <= 0) {
-            console.log("You killed " + this.name);
+            ui.addMsg("You killed " + this.name);
             if(this.hasMixin("PlayerActor")) { // If its player
                 this.map.engine.lock();
                 // Switch screens
@@ -63,7 +65,7 @@ Mixins.Attacker = {
     attack: function(target) {
         if(target.hasMixin('Destructible')) {
             const damage = this.attackValue - target.defenseValue;
-            console.log("You smack " + target.name + " for " + damage);
+            ui.addMsg(this.name +" hit " + target.name + " for " + damage);
             target.takeDamage(this, damage);
         }
     }
@@ -75,6 +77,7 @@ Mixins.PlayerActor = {
     act: function() {
         // Re-render the screen
         game.refresh();
+        ui.updateHealth();
         // Lock the engine and wait async
         this.world.engine.lock();
     }

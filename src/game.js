@@ -37,7 +37,7 @@ class Game {
         bindEventToScreen('keydown');
 
         // Switch to start screen
-        this.switchScreen(Screen.startScreen);
+        this.switchScreen(Screen.playScreen);
     }
 
     switchScreen(screen) {

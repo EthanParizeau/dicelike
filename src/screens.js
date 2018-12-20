@@ -6,6 +6,7 @@ import { DebugLog } from './util';
 import Entity from './entity';
 import World from './world';
 import XY from './xy';
+import ui from './ui';
 
 import { Map as rotMap} from 'rot-js';
 
@@ -57,6 +58,8 @@ Screen.playScreen = {
 
         this.player = new Entity(PlayerTemplate);
         this.world = new World(this.player);
+        // Setup UI
+        ui.init(this.player);
         this.world.switchLevel(0);
         this.world.engine.start();
     },
