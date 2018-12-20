@@ -1,2 +1,6 @@
 ## TODO ##
-Use grid instead of flexbox
+Player inventory
+Improve Graphics
+Add FOV
+Add map legend
+Fix the bug that happens when you die and don't get rromfed

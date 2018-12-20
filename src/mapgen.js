@@ -1,4 +1,4 @@
-import { Map as rotMap} from 'rot-js';
+import { Map as rotMap, RNG} from 'rot-js';
 import { MapOptions } from './const'
 import Map from './map';
 import Tile from './tile';
@@ -15,24 +15,31 @@ function GenerateMap(player, id) {
     let map = [];
     // Generate empty mapWidth x mapHeight array
     map = Array(MapOptions.width).fill(0).map(() => Array(MapOptions.height).fill(0));
-
-    // Setup the generator
-    const generator = new rotMap.Digger(MapOptions.width, MapOptions.height, { dugPercentage: 0.3 });
+    // Create map generator
+    const generator = new rotMap.Arena(MapOptions.width, MapOptions.height);
+    // Create map
     generator.create((x, y, value) => {
         if(value) {
             map[x][y] = new Tile("wall");
         } else {
-            map[x][y] = new Tile("floor");
+            if(RNG.getUniform() <= 0.05) {
+                if(RNG.getUniform() <= .5) {
+                    map[x][y] = new Tile("lightTree");
+                } else {
+                    map[x][y] = new Tile("darkTree");
+                }
+            } else {
+                map[x][y] = new Tile("floor");
+            }
         }
     });
-    // Create map from tiles
+    
+ 
     map = new Map(map, player);
     map.id = id;
-
-    // Add the player
     map.addEntityAtRandomPosition(player);
-    // Add ememy
     map.addEntityAtRandomPosition(new Entity(EnemyTemplate));
+
     return map;
 }
 

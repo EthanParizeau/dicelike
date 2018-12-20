@@ -1,32 +1,48 @@
 const DisplayOptions = {
-    fontSize: 15,
-    width: 50,
-    height: 25,
+    fontSize: 20,
+    width: 40,
+    height: 20,
     forceSquareRatio: true,
     tileColorize: true,
 }
 
 const MapOptions = {
-    width: 50,
-    height: 25,
+    width: 80,
+    height: 40,
 }
 
 const Tiles = {
     floor: {
         symbol: ".",
-        foreground: "#797b7f",
-        background: "#797b7f",
+        foreground: "#805500",
+        background: "black",
         properties: {
             isWalkable: true
         },
         
+    },
+    darkTree: {
+        symbol: "♣",
+        foreground: "green",
+        background: "black",
+        properties: {
+            
+        },
+    },
+    lightTree: {
+        symbol: "♠",
+        foreground: "lightgreen",
+        background: "black",
+        properties: {
+            
+        },
     },
     wall: {
         symbol: "#",
         foreground: "#5a5c60",
         background: "#5a5c60",
         properties: {
-            test: true
+            
         }
     }
 }
