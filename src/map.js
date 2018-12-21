@@ -1,5 +1,4 @@
 import { DebugLog } from './util';
-import Tile from './tile';
 import XY from './xy';
 import { RNG } from 'rot-js';
 

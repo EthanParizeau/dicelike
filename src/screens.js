@@ -8,8 +8,6 @@ import World from './world';
 import XY from './xy';
 import ui from './ui';
 
-import { Map as rotMap} from 'rot-js';
-
 const Screen = {};
 
 // Start screen
@@ -117,7 +115,7 @@ Screen.playScreen = {
         if(inputType === 'keydown') {
             if(inputData.keyCode in this.keys) {
                 if(inputData.keyCode === KEYS.VK_C) {
-                    game.switchScreen(Screen.testScreen);
+                    game.switchScreen(Screen.characterScreen); // Switch to character screen
                 } else {
                     const direction = this.keys[inputData.keyCode];
                     if(direction === -1) { // Skip turn
@@ -138,11 +136,37 @@ Screen.playScreen = {
     }
 }
 
+Screen.characterScreen = {
+    enter: () => {
+        DebugLog.info("Entered test screen");
+        console.log(ui);
+
+         
+        
+    },
+
+    exit: () => {
+        DebugLog.info("Exited test screen.");
+    },
+
+    render: (display) => {
+        display.drawText(1,1, "%c{yellow}Test Screen");
+    },
+
+    handleInput: (inputType, inputData) => {
+        if(inputType === 'keydown') {
+                if(inputData.keyCode === KEYS.VK_ESCAPE) {
+                    game.switchScreen(Screen.playScreen); // Switch back to playscreen
+                } 
+        }
+    }
+}
+
 Screen.testScreen = {
     player: null,
     enter: (player) => {
         DebugLog.info("Entered test screen");
-        this.player = player;
+        console.log(ui);
         
     },
 

@@ -1,6 +1,6 @@
 import './styles/index.css';
 import game from './game';
-import reportBug from './bugReport';
+
 
 // Setup bug reporting
 document.getElementById('reportBtn').onclick = () => {
