@@ -1,7 +1,7 @@
 import { Display } from 'rot-js';
-import Screen from './screens'
-import {DisplayOptions} from './const';
+import { DisplayOptions } from './const';
 import { DebugLog } from './util';
+import Level from './level';
 
 /**
  * Class to manage the game
@@ -18,7 +18,8 @@ class Game {
 
     init() {
         DebugLog.info("Game Init");
-        // Setup and append display to canvas
+
+        // Setup display and append to canvas
         this.display = new Display(DisplayOptions);
         document.getElementsByClassName('app')[0].appendChild(this.display.getContainer()).setAttribute("class", "screen"); // 1-line SON
 

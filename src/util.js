@@ -15,3 +15,4 @@ export const DebugLog = {
         console.error(str);
     }
 }
+
