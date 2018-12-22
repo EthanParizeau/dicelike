@@ -6,7 +6,6 @@ class Map {
     constructor(tiles, player) {
         DebugLog.info('Map Created');
         this.id = null;
-        this.world = null;
         this.tiles = tiles;
         this.width = tiles.length;
         this.height = tiles[0].length;

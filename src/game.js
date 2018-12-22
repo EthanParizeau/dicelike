@@ -13,7 +13,6 @@ class Game {
     constructor() {
         DebugLog.info("Game Created");
         this.display = null;
-        this.map = null;
         this.currentScreen = null;
     }
 

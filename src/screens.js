@@ -7,6 +7,7 @@ import Entity from './entity';
 import World from './world';
 import XY from './xy';
 import ui from './ui';
+import CharacterScreen from './characterScreen';
 
 const Screen = {};
 
@@ -115,7 +116,8 @@ Screen.playScreen = {
         if(inputType === 'keydown') {
             if(inputData.keyCode in this.keys) {
                 if(inputData.keyCode === KEYS.VK_C) {
-                    game.switchScreen(Screen.characterScreen); // Switch to character screen
+                    let characterScreen = new CharacterScreen(this.player);
+                    characterScreen.show(); // Switch to character screen
                 } else {
                     const direction = this.keys[inputData.keyCode];
                     if(direction === -1) { // Skip turn
@@ -140,9 +142,6 @@ Screen.characterScreen = {
     enter: () => {
         DebugLog.info("Entered test screen");
         console.log(ui);
-
-         
-        
     },
 
     exit: () => {
