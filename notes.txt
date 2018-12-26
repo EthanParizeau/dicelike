@@ -1,3 +1,6 @@
+## BUGS ##
+Rat and player move on keyboard events
+
 ## TODO ##
 Player inventory
 Improve Graphics
