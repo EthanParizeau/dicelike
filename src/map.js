@@ -12,6 +12,7 @@ class Map {
         this.entities = [];
         this.player = null;
         this.tiles = null;
+        this.world = null;
         this.width = MapOptions.width;
         this.height = MapOptions.height;
     }

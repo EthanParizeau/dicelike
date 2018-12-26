@@ -24,9 +24,25 @@ class World {
     }
 
     init() {
+        
         this.createMap();
         this.player = new Player();
+        this.player.map = this.currentMap;
         this.currentMap.addPlayer(this.player);
+
+        const bindEventToScreen = event => {
+            window.addEventListener(event, (e) => {
+                // On event, send to screen if it exist
+                if(this.player !== null) {
+                    // Send the event to player
+                    this.player.handleKeyEvent(e);
+                }
+            });
+            
+        }
+
+        bindEventToScreen('keydown');
+
         this.draw();
         this.info();
     }
@@ -85,6 +101,7 @@ class World {
 
     createMap() {
         var map = generateMap();
+        map.world = this;
         this.currentMap = map;
         this.maps.push(map);
     }
