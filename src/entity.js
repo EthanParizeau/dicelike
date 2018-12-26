@@ -1,10 +1,8 @@
 class Entity {
-    constructor() {
-
-    }
-
-    test() {
-        console.log("Entity");
+    constructor(sym, fg, bg) {
+        this.symbol = sym;
+        this.foreground = fg;
+        this.background = bg;
     }
 }
 

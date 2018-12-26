@@ -1,8 +1,16 @@
-import Entity from './entity';
+import Being from './being';
 
-class Player extends Entity {
+class Player extends Being {
     constructor() {
+        super("@", 'red', 'yellow');
+    }
 
+    act() {
+        console.log("PLAYER ACTING");
+    }
+
+    handleKeyEvent(e) {
+        
     }
 
     test() {
